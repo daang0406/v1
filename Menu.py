@@ -2,14 +2,12 @@ import streamlit as st
 import plotly.express as px
 import pandas as pd
 import numpy as np
-import os
-import warnings
 from datetime import datetime
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import plotly.graph_objects as go # para mayor cantidad de graficos saldo vs Egresos
 
-warnings.filterwarnings('ignore')
+
 
 st.set_page_config(page_title="Flujo de caja", page_icon=":bar_chart:", layout="wide")
 
