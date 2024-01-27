@@ -8,8 +8,8 @@ from PIL import Image
 
 st.title('Graficas generales')
 st.markdown('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allow_html=True)
-icono = Image.open("KIW_icono.ico")
-st.set_page_config(page_title="Graficas generales", page_icon=icono, layout="wide", )
+#icono = Image.open("KIW_icono.ico")
+#st.set_page_config(page_title="Graficas generales", page_icon=icono, layout="wide", )
 
 # drive
 scope = ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/drive']
