@@ -141,17 +141,17 @@ with col2:
                                         pago_df[pago_df['Mon.'] == 'USD'].index[0]:
                                         pago_df[pago_df['Mon.'] == 'Total USD'].index[0]
                                         ]
-               try: 
-                        importe_euros_pago = pago_df['Total general'].tolist()[
-                                        pago_df[pago_df['Mon.'] == 'EUR'].index[0]:
-                                        pago_df[pago_df['Mon.'] == 'Total EUR'].index[
-                                                0]]
-                        proveedor_euros = pago_df['Nombre del Proveedor'].tolist()[
-                                        pago_df[pago_df['Mon.'] == 'EUR'].index[0]:
-                                        pago_df[pago_df['Mon.'] == 'Total EUR'].index[0]
-                                        ]
+                try:
+                    importe_euros_pago = pago_df['Total general'].tolist()[
+                        pago_df[pago_df['Mon.'] == 'EUR'].index[0]:
+                        pago_df[pago_df['Mon.'] == 'Total EUR'].index[0]
+                    ]
+                    proveedor_euros = pago_df['Nombre del Proveedor'].tolist()[
+                        pago_df[pago_df['Mon.'] == 'EUR'].index[0]:
+                        pago_df[pago_df['Mon.'] == 'Total EUR'].index[0]
+                    ]
                 except IndexError:
-                        pass
+                    pass
 
                 if st.button("subir"):
                         df = pago_df
