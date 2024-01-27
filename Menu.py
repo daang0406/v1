@@ -36,8 +36,8 @@ with col1:
         if saldo_file is not None:
                 saldo_df = pd.read_excel(saldo_file, engine='openpyxl')
                 st.success("Archivo cargado exitosamente.")
-                fila_titulo = saldo_df[saldo_df.apply(lambda row: 'BANCO' in str(row.values), axis=1)].index[0]
-                saldo_df = pd.read_excel(saldo_file, header=fila_titulo, engine='openpyxl')
+                #fila_titulo = saldo_df[saldo_df.apply(lambda row: 'BANCO' in str(row.values), axis=1)].index[0]
+                saldo_df = pd.read_excel(saldo_file, engine='openpyxl')
                 saldo_df.fillna('', inplace=True)
 
                 edited_saldo = st.data_editor(saldo_df, num_rows="dynamic")
@@ -133,10 +133,7 @@ with col2:
                                         pago_df[pago_df['Mon.'] == 'Total USD'].index[
                                                 0]
                                         ]
-                importe_euros_pago = pago_df['Total general'].tolist()[
-                                        pago_df[pago_df['Mon.'] == 'EUR'].index[0]:
-                                        pago_df[pago_df['Mon.'] == 'Total EUR'].index[
-                                                0]]
+                
                 # Listas de proveedores cada divisa
                 proveedor_soles = pago_df['Nombre del Proveedor'].tolist()[
                                         :pago_df[pago_df['Mon.'] == 'Total PEN'].index[0]]
@@ -144,10 +141,17 @@ with col2:
                                         pago_df[pago_df['Mon.'] == 'USD'].index[0]:
                                         pago_df[pago_df['Mon.'] == 'Total USD'].index[0]
                                         ]
-                proveedor_euros = pago_df['Nombre del Proveedor'].tolist()[
+               try: 
+                        importe_euros_pago = pago_df['Total general'].tolist()[
+                                        pago_df[pago_df['Mon.'] == 'EUR'].index[0]:
+                                        pago_df[pago_df['Mon.'] == 'Total EUR'].index[
+                                                0]]
+                        proveedor_euros = pago_df['Nombre del Proveedor'].tolist()[
                                         pago_df[pago_df['Mon.'] == 'EUR'].index[0]:
                                         pago_df[pago_df['Mon.'] == 'Total EUR'].index[0]
                                         ]
+                except IndexError:
+                        pass
 
                 if st.button("subir"):
                         df = pago_df
