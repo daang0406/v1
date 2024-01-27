@@ -6,10 +6,10 @@ from datetime import datetime
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import plotly.graph_objects as go # para mayor cantidad de graficos saldo vs Egresos
+from PIL import Image
 
-
-
-st.set_page_config(page_title="Flujo de caja", page_icon=":bar_chart:", layout="wide")
+icono = Image.open("KIW_icono.ico")
+st.set_page_config(page_title="Flujo de caja", page_icon=icono, layout="wide")
 
 
 
