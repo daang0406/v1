@@ -16,7 +16,7 @@ st.set_page_config(page_title="Flujo de caja", page_icon=icono, layout="wide")
 # drive
 scope = ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/drive']
 credenciales = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", scope)
-cliente = gspread.authorize(credenciales)
+cliente = gspread.authorize(credenciales) 
 #sheet = cliente.open("Base de datos").sheet1
 # ---------------------------------------------------------------------------------------------------
 
@@ -59,6 +59,9 @@ with col1:
                         df = saldo_df
                         df['fecha'] = fecha_actual
                         sheet.append_rows(df.values.tolist())
+                        st.success('Los datos se subieron adecuadamente')
+                elif saldo_df is None:
+                        st.warning("No se esta subiendo ningun archivo ")
                 
                 moneda_saldo = st.multiselect("Escoge la moneda:", moneda2, key='moneda_saldo')
                 grafica_saldo = st.multiselect("Escoge el tipo de gráfica:",
@@ -166,7 +169,8 @@ with col2:
                         df.drop(df.columns[3], axis=1, inplace=True)
                         df['fecha'] = fecha_actual
                         sheet.append_rows(df.values.tolist())
-                else:
+                        st.success('Los datos se subieron adecuadamente')
+                elif pago_file is None:
                         st.warning("No se esta subiendo ningun archivo ")
 
                 moneda_pago = st.multiselect("Escoge la moneda:", moneda1, key='moneda_pago')
