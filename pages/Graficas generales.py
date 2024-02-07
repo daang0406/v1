@@ -15,7 +15,7 @@ st.markdown('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allo
 scope = ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/drive']
 credenciales = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", scope)
 cliente = gspread.authorize(credenciales)
-sheet = cliente.open("Base de datos").get_worksheet(1)
+sheet = cliente.open("Base de datos").get_worksheet(0)
 # ---------------------------------------------------------------------------------------------------
 
 datos= sheet.get_all_records()
