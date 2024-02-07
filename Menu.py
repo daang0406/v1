@@ -160,6 +160,7 @@ with col2:
 
                 if st.button("subir",key="boton_egresos"):
                         df = pago_df
+                        sheet=cliente.open("Base de datos").get_worksheet(0)
                         df['Mon.'] = df['Mon.'].replace(['', ' '], np.nan)
                         df['Mon.'].fillna(method='ffill', inplace=True)
                         df.dropna(axis=1, how='all', inplace=True)
