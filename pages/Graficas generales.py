@@ -4,12 +4,9 @@ from oauth2client.service_account import ServiceAccountCredentials
 import pandas as pd
 import plotly.graph_objects as go 
 import plotly.express as px
-from PIL import Image
 
 st.title('Graficas generales')
 st.markdown('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allow_html=True)
-#icono = Image.open("KIW_icono.ico")
-#st.set_page_config(page_title="Graficas generales", page_icon=icono, layout="wide", )
 
 # drive
 scope = ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/drive']
@@ -79,3 +76,4 @@ if 'PEN' in moneda_general:
                                 st.plotly_chart(fig, use_container_width=True)
     else:
          st.warning('No se ha seleccionado')
+
