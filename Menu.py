@@ -17,7 +17,7 @@ st.set_page_config(page_title="Flujo de caja", page_icon=icono, layout="wide")
 scope = ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/drive']
 credenciales = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", scope)
 cliente = gspread.authorize(credenciales)
-sheet = cliente.open("Base de datos").sheet1
+#sheet = cliente.open("Base de datos").sheet1
 # ---------------------------------------------------------------------------------------------------
 
 st.title(":bar_chart: Flujo de caja")
@@ -54,6 +54,11 @@ with col1:
                 importe_usd_saldo = saldo_df[saldo_df["Moneda"] == "Usd"]["Importe USD"].tolist()
 
                 banco2 = saldo_df[saldo_df["Moneda"] == "Usd"]["BANCO"].tolist()
+                if st.button("subir",key="Boton_ingresos"):
+                        sheet=cliente.open("Base de datos").get_worksheet(1)
+                        df = saldo_df
+                        df['fecha'] = fecha_actual
+                        sheet.append_rows(df.values.tolist())
                 
                 moneda_saldo = st.multiselect("Escoge la moneda:", moneda2, key='moneda_saldo')
                 grafica_saldo = st.multiselect("Escoge el tipo de gráfica:",
@@ -153,7 +158,7 @@ with col2:
                 except IndexError:
                     pass
 
-                if st.button("subir"):
+                if st.button("subir",key="boton_egresos"):
                         df = pago_df
                         df['Mon.'] = df['Mon.'].replace(['', ' '], np.nan)
                         df['Mon.'].fillna(method='ffill', inplace=True)
